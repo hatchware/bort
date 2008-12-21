@@ -1,8 +1,11 @@
 class SessionsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
   
-  def new
-  end
+	def new
+		if logged_in?
+			render :action => 'new_logged'
+		end
+	end
 
   def create
     logout_keeping_session!
