@@ -5,7 +5,7 @@
 # ENV['RAILS_ENV'] ||= 'production'
 
 # Specifies gem version of Rails to use when vendor/rails is not present
-RAILS_GEM_VERSION = '2.2.0' unless defined? RAILS_GEM_VERSION
+RAILS_GEM_VERSION = '2.2.2' unless defined? RAILS_GEM_VERSION
 
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
@@ -58,7 +58,7 @@ Rails::Initializer.run do |config|
   # no regular words or you'll be exposed to dictionary attacks.
   config.action_controller.session = {
     :session_key => '_bort_session',
-    :secret      => 'a3e2a51a371bb964a4250c21f8d083f9ddb224d455171dcba55518e74af43366e52e3f239773f90aed0ab6caf6554f051504ce7232599d066150dbabff0f1654'
+    :secret      => 'Jp3-5bX7_8p69k7*R7e5_zHG+5pn+-xD7-gHsBZuWC+ZZvtznM!_@Pw+-3b6B2c8P-7cY875&5UBZ=_&9C4pg_fsf57$+M&g&Y*bSy6=F36Z!g&p*Cwbd7_zL=XKM?9d'
   }
 
   # Use the database for sessions instead of the cookie-based default,
