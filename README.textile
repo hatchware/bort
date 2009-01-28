@@ -44,10 +44,11 @@ h3. Rspec & Rspec-rails
 You should be testing your code, so Bort comes with Rspec and Rspec-rails already installed so you're
 ready to roll.
 
-h3. Exception Notifier
+h3. HoptoadNotifier
 
-You don't want your applications to crash and burn so Exception Notifier is already installed to let 
-you know when everything goes to shit.
+This is the notifier plugin for integrating apps with Hoptoad.
+When an uncaught exception occurs, HoptoadNotifier will POST the relevant data
+to the Hoptoad server specified in your environment.
 
 h3. Asset Packager
 
