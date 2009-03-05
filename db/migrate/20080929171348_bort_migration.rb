@@ -25,7 +25,7 @@ class BortMigration < ActiveRecord::Migration
     
     # Create Users Table
     create_table :users do |t|
-      t.string :login, :limit => 40
+      # t.string :login, :limit => 40
       t.string :identity_url      
       t.string :name, :limit => 100, :default => '', :null => true
       t.string :email, :limit => 100
@@ -65,9 +65,8 @@ class BortMigration < ActiveRecord::Migration
     
     # Create default admin user
     user = User.create do |u|
-      u.login = 'admin'
-      u.password = u.password_confirmation = 'deepblue'
       u.email = APP_CONFIG[:admin_email]
+      u.password = u.password_confirmation = 'deepblue'
     end
     
     # Activate user
@@ -88,4 +87,5 @@ class BortMigration < ActiveRecord::Migration
     drop_table :open_id_authentication_associations
     drop_table :open_id_authentication_nonces
   end
+
 end

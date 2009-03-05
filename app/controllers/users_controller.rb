@@ -11,7 +11,7 @@ class UsersController < ApplicationController
       authenticate_with_open_id(params[:openid_url], :return_to => open_id_create_url, 
         :required => [:nickname, :email]) do |result, identity_url, registration|
         if result.successful?
-          create_new_user(:identity_url => identity_url, :login => registration['nickname'], :email => registration['email'])
+          create_new_user(:identity_url => identity_url, :email => registration['email'])
         else
           failed_creation(result.message || "Sorry, something went wrong")
         end
@@ -28,7 +28,11 @@ class UsersController < ApplicationController
     when (!params[:activation_code].blank?) && user && !user.active?
       user.activate!
       flash[:notice] = "Signup complete! Please sign in to continue."
-      redirect_to login_path
+      
+      self.current_user = user
+      redirect_to :controller => :sessions, :action => :login_after_activate
+      
+      # redirect_to login_path
     when params[:activation_code].blank?
       flash[:error] = "The activation code was missing.  Please follow the URL from your email."
       redirect_back_or_default(root_path)

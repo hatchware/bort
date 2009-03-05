@@ -15,6 +15,14 @@ class SessionsController < ApplicationController
       password_authentication
     end
   end
+  
+  def login_after_activate
+    if self.current_user
+      successful_login
+    else
+      render :text => "Nie hakuj Jasiu. ^^'"
+    end
+  end
 
   def destroy
     logout_killing_session!
@@ -37,13 +45,13 @@ class SessionsController < ApplicationController
   protected
   
   def password_authentication
-    user = User.authenticate(params[:login], params[:password])
+    user = User.authenticate(params[:email], params[:password])
     if user
       self.current_user = user
       successful_login
     else
       note_failed_signin
-      @login = params[:login]
+      @email = params[:email]
       @remember_me = params[:remember_me]
       render :action => :new
     end
@@ -57,7 +65,7 @@ class SessionsController < ApplicationController
   end
 
   def note_failed_signin
-    flash[:error] = "Couldn't log you in as '#{params[:login]}'"
-    logger.warn "Failed login for '#{params[:login]}' from #{request.remote_ip} at #{Time.now.utc}"
+    flash[:error] = "Couldn't log you in as '#{params[:email]}'"
+    logger.warn "Failed login for '#{params[:email]}' from #{request.remote_ip} at #{Time.now.utc}"
   end
 end
