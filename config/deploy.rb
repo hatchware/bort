@@ -6,6 +6,10 @@ require 'capistrano/ext/multistage'
 
 set :application, "app_name"
 
+role :app, '3.xserve.pl'
+role :web, '3.xserve.pl'
+role :db,  '3.xserve.pl', :primary => true
+
 set :deploy_to, "/var/www/apps/#{application}"
 
 set :scm, :git

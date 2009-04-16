@@ -40,7 +40,7 @@ class BortMigration < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :users, :login, :unique => true
+    add_index :users, :email, :unique => true
     
     # Create Passwords Table
     create_table :passwords do |t|
